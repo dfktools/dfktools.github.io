@@ -1,0 +1,119 @@
+body {
+	font-family: monospace;
+	font-size: 15px;
+	color: black;
+	background-color: hsl(0, 0%, 30%);
+}
+
+input {
+	width: 325px;
+}
+
+div {
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+	width: 530px;
+}
+
+#main {
+	gap: 10px;
+	margin-top: 15px;
+}
+
+label {
+	display: flex;
+	border: 1px solid black;
+	width: 100px;
+	height: 20px;
+	background-color: hsl(0, 0%, 60%);
+	padding-left: 2px;
+}
+
+.hb-0 {
+	border: 4px solid hsl(0, 0%, 80%);
+	background-color: hsl(0, 0%, 80%);
+}
+.hb-1 {
+	border: 4px solid DarkSeaGreen;
+	background-color: DarkSeaGreen;
+}
+.hb-2 {
+	border: 4px solid blue;
+	background-color: blue;
+}
+.hb-3 {
+	border: 4px solid orange;
+	background-color: orange;
+}
+.hb-4 {
+	border: 4px solid fuchsia;
+	background-color: fuchsia;
+}
+
+.Warrior {
+	background-color: hsl(25, 50%, 75%);
+}
+.Knight {
+	background-color: hsl(25, 50%, 50%);
+}
+.Paladin {
+	background-image: linear-gradient(to right, hsl(60, 100%, 50%), hsl(25, 100%, 50%));
+}
+
+.Thief {
+	background-color: hsl(120, 50%, 75%);
+}
+.Archer {
+	background-color: hsl(120, 50%, 50%);
+}
+.DarkKnight {
+	background-image: linear-gradient(to right, hsl(90, 100%, 70%), hsl(120, 100%, 40%));
+}
+.Dragoon {
+	background-image: linear-gradient(to top left, yellow, red);
+}
+
+.Priest {
+	background-color: hsl(230, 75%, 75%);
+}
+.Wizard {
+	background-color: hsl(230, 75%, 55%);
+}
+.Summoner {
+	background-image: linear-gradient(to right, hsl(180, 90%, 80%), hsl(230, 90%, 50%));
+}
+
+.Monk {
+	background-color: hsl(280, 75%, 75%);
+}
+.Pirate {
+	background-color: hsl(280, 75%, 50%);
+}
+.Ninja {
+	background-image: linear-gradient(to right, hsl(300, 90%, 70%), hsl(270, 90%, 50%));
+}
+.Sage {
+	background-image: linear-gradient(to top left, aqua, fuchsia);
+}
+.DreadKnight {
+	background-color: black;
+	color: white;
+}
+
+.mining {
+	color: hsl(60, 75%, 50%);
+	text-shadow: 1px 1px black;
+}
+.gardening {
+	color: hsl(120, 75%, 45%);
+	text-shadow: 1px 1px black;
+}
+.fishing {
+	color: hsl(220, 75%, 50%);
+	text-shadow: 1px 1px black;
+}
+.foraging {
+	color: hsl(280, 75%, 50%);
+	text-shadow: 1px 1px black;
+}
