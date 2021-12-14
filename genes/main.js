@@ -130,7 +130,7 @@ function addHero(h) {
 	let hb = document.createElement('div')
 	hb.setAttribute('class', `hb-${h['rarity']}`)
 	
-	let items = [`#${h['id']}`, 'D', 'R1', 'R2', 'R3', 'Class']
+	let items = [`#${h['id']} (G${h['gen']})`, 'D', 'R1', 'R2', 'R3', 'Class']
 	items = items.concat(h['mainClass'])
 	items.push('SubClass')
 	items = items.concat(h['subClass'])
