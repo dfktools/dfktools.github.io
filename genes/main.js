@@ -59,7 +59,7 @@ function decode(genes) {
 		buf += abc[mod]
 		genes = (genes - mod) / base
 	}
-	buf += abc[mod]
+	buf += abc[genes]
 	buf = buf.padEnd(48, '1')
 	let result = []
 	for (let i = 0; i < buf.length; i++) result[i] = abc.indexOf(buf[i])
