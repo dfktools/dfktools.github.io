@@ -41,11 +41,13 @@ async function eth_call(data) {
 	return r['result']
 }
 
-async function userInfo(address) {
-	data = {
+async function getIds(ids) {
+	let data = {
 		'to':'0x986c14726E824a28b5Ed4b0EdE8310fe491085C7',
-		'data':'0x6386c1c7' + address.slice(2).toLowerCase().padStart(64, '0')
+		'data':'0x195b6ad60000000000000000000000000000000000000000000000000000000000000020'
 	}
+	data['data'] += ids.length.toString(16).padStart(64, '0')
+	ids.forEach(id => data['data'] += id.toString(16).padStart(64, '0'))
 	return await eth_call(data)
 }
 
@@ -101,22 +103,30 @@ function parseRaw(rawString) {
 		}
 		heroes.push(h)
 	}
-	heroes.sort((a, b) => a['id'] - b['id'])
+	// heroes.sort((a, b) => a['id'] - b['id'])
 	return heroes
 }
 
-async function go() {
-	const address = document.getElementById('address-input').value
-	if (address.length != 42) return
-	const rawString = (await userInfo(address)).slice(2)
-	const heroes = parseRaw(rawString)
-	displayHeroes(heroes)
-	localStorage.setItem('address', address)
+async function loadHeroes(ids) {
+	return parseRaw((await getIds(ids)).slice(2))
 }
 
-function clearMain() {
-	let main = document.getElementById('main')
-	if (main) main.remove()
+async function go() {
+	const limit = 10000
+	const chunk = 1000
+	const chunk2 = 100
+	for (let i = 0; i < limit; i+=chunk) {
+		const start = Date.now() //
+		let pp = []
+		for (let j = i; j < i+chunk; j+=chunk2) {
+			let ids = []
+			for (let k = j+1; k < j+chunk2+1; k++) ids.push(k)
+			pp.push(loadHeroes(ids))
+		}
+		let heroes = (await Promise.all(pp)).flat()
+		displayHeroes(heroes)
+		console.log(Date.now() - start)
+	}
 }
 
 function addLabel(hb, text) {
@@ -141,18 +151,12 @@ function addHero(h) {
 }
 
 function displayHeroes(heroes) {
-	clearMain()
-	const main = document.createElement('div')
-	main.setAttribute('id', 'main')
-	document.body.appendChild(main)
 	heroes.forEach(h => addHero(h))
 }
 
-window.addEventListener('load', async function () {
-	document.getElementById('go-button').onclick = go
-	let a = localStorage.getItem('address')
-	if (a) {
-		document.getElementById('address-input').value = a
-		await go()
-	}
+window.addEventListener('load', function () {
+	const main = document.createElement('div')
+	main.setAttribute('id', 'main')
+	document.body.appendChild(main)
+	go()
 })
